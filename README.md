@@ -56,164 +56,49 @@ Because this is an example app with setting up the app and redux, I will only be
 touch App/Screens/FirstScreen.js && touch App/Screens/SecondScreen.js && mkdir App/Components/FirstScreen && touch App/Components/FirstScreen/GoToSecondScreenButton.js
 ```
 
-- This is an example of a button on the first screen to go to the second screen
-```
-// COMPONENT GOTO SCREEN BUTTON
-import React, { Component } from 'react';
-import {
-  View,
-  Button,
-  StyleSheet
-} from 'react-native';
-import { Actions } from "react-native-router-flux"
+- This is an example of a button on the first screen to go to the second screen. You can copy and paste this file into the __GoToSecondScreenButton.js__
 
-class GoToSecondScreenButton extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Button
-          onPress={() => {
-          console.log("Pushing to second Screen")
-        }}
-      title="Go To Second Screen"/>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default GoToSecondScreenButton
-``` 
-- This is the first screen
-```
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import GoToSecondScreenButton from '../Components/FirstScreen/GoToSecondScreenButton'
-
-class FirstScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>I'm the MyComponent component</Text>
-        <GoToSecondScreenButton />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default FirstScreen
-```
+[GoToSecondScreenButton.js](https://github.com/ethanbonin/react-native-setup-example/wiki/GoToSecondScreenButton.js)
 
 
-- This is the second Screen
-```
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+- This is the first screen. Also, can copy and paste into the file if needed __FirstScreen.js__
 
-class SecondScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>I'm the MyComponent component</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default SecondScreen
-```
+[FirstScreen.js](https://github.com/ethanbonin/react-native-setup-example/wiki/FirstScreen.js)
 
 
-- __LASTLY__ and most importantly, the set up for the App.js file
-```
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+- This is the second Screen code. You can copy and paste it into __SecondScreen.js__
 
-import React, { Component } from "react";
+[SecondScreen.js](https://github.com/ethanbonin/react-native-setup-example/wiki/SecondScreen.js)
 
-//------ROUTER RELATED-----------------//
-import { Scene, Router, Stack } from "react-native-router-flux";
 
-import FirstScreen from "./App/Screens/FirstScreen";
-import SecondScreen from "./App/Screens/SecondScreen";
-//----------------------------//
 
-//-------REDUX RELATED--------//
-import { Provider } from "react-redux";
-import reduxThunk from "redux-thunk";
-import { createStore, applyMiddleware } from "redux";
-import reducers from "./App/Redux/reducers/";
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-//--------------------------//
+- __LASTLY__ and most importantly, the set up for the App.js file. I would definitely copy and paste this.
 
-export default class App extends Component {
-  componentDidMount() {
-  }
+[App.js](https://github.com/ethanbonin/react-native-setup-example/wiki/App.js)
 
-  render() {
-    return (
-      <Provider store={store}>
-        <Router>
-          <Stack key={"root"}>
-              <Scene
-                key={"FirstScreen"}
-                hideNavBar="true"
-                component={FirstScreen}
-                title="First Screen"
-                initial
-              />
-              <Scene
-                key={"SecondScreen"}
-                component={SecondScreen}
-                title="Second Screen"
-              />
-            </Stack>
-        </Router>
-      </Provider>
-    );
-  }
-}
-```
 
 # STEP 3 - REDUX
 Now the app won't run just yet because we have not conneted the redux. Lets do that now
-__Create the folders__
+- __Create the folders__
 ``` 
 mkdir App/Redux/actions && mkdir App/Redux/reducers
 ```
 
-__Follow up creating the index files and User Reducer__
+- __Follow up creating the index files and User Reducer__
 ```
 touch App/Redux/actions/index.js && touch App/Redux/actions/types.js &&  touch App/Redux/reducers/index.js && touch/App/Redux/reducers/userReducer.js
 ```
 
 
-  
+- You'll want to copy and paste the index.js into the actions folder.
+[actions/index.js](https://github.com/ethanbonin/react-native-setup-example/wiki/-actions-index.js)
+
+-Then follow up with the types
+[actions/types.js](https://github.com/ethanbonin/react-native-setup-example/wiki/actions-types.js)
+
+
+- Here is the reducer Stuff
+[reducer/index.js](https://github.com/ethanbonin/react-native-setup-example/wiki/reducers-index.js)
+
+- Here is the userReducer 
+[reducer/index.js](https://github.com/ethanbonin/react-native-setup-example/wiki/reducers-userReducer.js)
