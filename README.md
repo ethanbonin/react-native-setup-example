@@ -43,9 +43,172 @@ The best set up that I find for components and screen control.
   Make sure you're at inside the Main directory of the newly created Project Folder (aka: ```./MY_CUSTOM_PROJECT```)
   
   ```
-  mkdir App && mkdir App/Components && App/Screens && App/Redux
+  mkdir App && mkdir App/Components && mkdir App/Screens && mkdir App/Redux
   ```
   
 ## STEP 3 - APP SET UP 
 Because this is an example app with setting up the app and redux, I will only be creating two screens.
+
+- Create the first and second screen inside the screens folder. 
+  - Then add the firstScreen folder to the components to add a button
+```
+touch App/Screens/FirstScreen.js && touch App/Screens/SecondScreen.js && mkdir App/Components/FirstScreen && touch App/Components/FirstScreen/GoToSecondScreenButton.js
+```
+
+- This is an example of a button on the first screen to go to the second screen
+```
+// COMPONENT GOTO SCREEN BUTTON
+import React, { Component } from 'react';
+import {
+  Button
+} from 'react-native';
+import { Actions } from "react-native-router-flux"
+
+class GoToSecondScreenButton extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button onPress={() => {
+          console.log("Pushing to second Screen")
+
+        }}/>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+
+export default GoToSecondScreenButton
+
+``` 
+- This is the first screen
+```
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import GoToSecondScreenButton from '../Components/FirstScreen/Button'
+
+export default class MyComponent extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>I'm the MyComponent component</Text>
+        <GoToSecondScreenButton />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+```
+
+
+- This is the second Screen
+```
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
+
+class SecondScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>I'm the MyComponent component</Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default SecondScreen
+```
+
+
+- __LASTLY__ and most importantly, the set up for the App.js file
+```
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
+import React, { Component } from "react";
+
+//------ROUTER RELATED-----------------//
+import { Scene, Router, Stack } from "react-native-router-flux";
+
+import FirstScreen from "./App/Screens/FirstScreen";
+import SecondScreen from "./App/Screens/SecondScreen";
+//----------------------------//
+
+//-------REDUX RELATED--------//
+import { Provider } from "react-redux";
+import reduxThunk from "redux-thunk";
+import { createStore, applyMiddleware } from "redux";
+import reducers from "./App/Redux/reducers/";
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+//--------------------------//
+
+export default class App extends Component {
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <Stack key={"root"}>
+              <Scene
+                key={"FirstScreen"}
+                hideNavBar="true"
+                component={FirstScreen}
+                title="First Screen"
+                initial
+              />
+              <Scene
+                key={"SecondScreen"}
+                component={SecondScreen}
+                title="Second Screen"
+              />
+            </Stack>
+        </Router>
+      </Provider>
+    );
+  }
+}
+
+```
+
+# STEP 3 - REDUX
+Now the app won't run just yet because we have not conneted the redux. Lets do that now
+``` 
+mkdir App/Redux/actions && mkdir App/Redux/reducers
+```
+
+Follow up creating the index files
+```
+touch App/Redux/actions/index.js && touch App/Redux/actions/types.js &&  touch App/Redux/reducers/index.js && touch/App/Redux/reducers/userReducer.js
+```
+
   
