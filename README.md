@@ -20,8 +20,9 @@ The list of modules to install
 * __lodash__ - For better programming
 
 
+Move into the directory, then install, then final up with npm install
 ``` 
-npm install --save lodash redux redux-thunk react-redux react-native-router-flux 
+cd MY_CUSTOM_PROJECT && npm install --save lodash redux redux-thunk react-redux react-native-router-flux  && npm install
 ``` 
 
 
@@ -60,7 +61,9 @@ touch App/Screens/FirstScreen.js && touch App/Screens/SecondScreen.js && mkdir A
 // COMPONENT GOTO SCREEN BUTTON
 import React, { Component } from 'react';
 import {
-  Button
+  View,
+  Button,
+  StyleSheet
 } from 'react-native';
 import { Actions } from "react-native-router-flux"
 
@@ -68,10 +71,11 @@ class GoToSecondScreenButton extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={() => {
+        <Button
+          onPress={() => {
           console.log("Pushing to second Screen")
-
-        }}/>
+        }}
+      title="Go To Second Screen"/>
       </View>
     );
   }
@@ -83,9 +87,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default GoToSecondScreenButton
-
 ``` 
 - This is the first screen
 ```
@@ -95,9 +97,9 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import GoToSecondScreenButton from '../Components/FirstScreen/Button'
+import GoToSecondScreenButton from '../Components/FirstScreen/GoToSecondScreenButton'
 
-export default class MyComponent extends Component {
+class FirstScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -113,6 +115,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default FirstScreen
 ```
 
 
@@ -197,18 +201,19 @@ export default class App extends Component {
     );
   }
 }
-
 ```
 
 # STEP 3 - REDUX
 Now the app won't run just yet because we have not conneted the redux. Lets do that now
+__Create the folders__
 ``` 
 mkdir App/Redux/actions && mkdir App/Redux/reducers
 ```
 
-Follow up creating the index files
+__Follow up creating the index files and User Reducer__
 ```
 touch App/Redux/actions/index.js && touch App/Redux/actions/types.js &&  touch App/Redux/reducers/index.js && touch/App/Redux/reducers/userReducer.js
 ```
+
 
   
