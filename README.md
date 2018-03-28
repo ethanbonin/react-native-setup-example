@@ -86,7 +86,7 @@ mkdir App/Redux/actions && mkdir App/Redux/reducers
 
 - __Follow up creating the index files and User Reducer__
 ```
-touch App/Redux/actions/index.js && touch App/Redux/actions/types.js &&  touch App/Redux/reducers/index.js && touch/App/Redux/reducers/userReducer.js
+touch App/Redux/actions/index.js && touch App/Redux/actions/types.js &&  touch App/Redux/reducers/index.js && touch App/Redux/reducers/userReducer.js
 ```
 
 
