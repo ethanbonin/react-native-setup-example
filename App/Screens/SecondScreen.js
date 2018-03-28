@@ -13,7 +13,7 @@ class SecondScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Are on on the second screen</Text>
+        <Text>You are on the second screen</Text>
         <Text>If you go back now, the name has changed to "Ethan"</Text>
       </View>
     );
